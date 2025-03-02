@@ -1,11 +1,13 @@
-from window import Window, Point, Line
+from window import Window
+from shapes import Point, Cell
 
 win = Window(800, 600)
 
-p1 = Point(0, 0)
-p2 = Point(100, 200)
-l1 = Line(p1, p2)
-win.draw_line(l1, "red")
+p1 = Point(100, 100)
+p2 = Point(120, 120)
+
+c1 = Cell(win=win)
+c1.draw(p1, p2)
 
 
 win.wait_for_close()

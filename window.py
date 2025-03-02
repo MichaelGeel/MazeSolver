@@ -1,20 +1,5 @@
 from tkinter import Tk, BOTH, Canvas
-
-
-class Point():
-    def __init__(self, x: int, y: int):
-        self.x = x
-        self.y = y
-
-
-class Line():
-    def __init__(self, point_1: Point, point_2: Point):
-        self.point_1 = point_1
-        self.point_2 = point_2
-
-
-    def draw(self, canvas: Canvas, color: str):
-        canvas.create_line(self.point_1.x, self.point_1.y, self.point_2.x, self.point_2.y, fill=color, width=2)
+from shapes import Line
 
 
 class Window():
@@ -44,6 +29,4 @@ class Window():
 
 
     def draw_line(self, line: Line, color: str):
-        # if isinstance(line, Line):
         line.draw(self.canvas, color)
-        # raise Exception(f"Expected object of class 'Line', got object of type {type(line)}")
