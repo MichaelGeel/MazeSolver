@@ -22,10 +22,6 @@ class Cell():
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self.__x1 = 0
-        self.__y1 = 0
-        self.__x2 = 20
-        self.__y2 = 20
         self.__win = win
 
     def draw(self, point_1: Point, point_2: Point):
