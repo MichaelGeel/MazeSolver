@@ -80,7 +80,6 @@ class Maze():
                     if not self._cells[i][j-1].visited:
                         vals_list.append("up")
             if len(vals_list) == 0:
-                print(i, j)
                 self._draw_cell(i, j)
                 return
             else:
