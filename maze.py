@@ -13,38 +13,46 @@ class Maze():
             num_cols,
             cell_size_x,
             cell_size_y,
-            win
+            win = None
     ):
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__num_rows = num_rows
-        self.__num_cols = num_cols
-        self.__cell_size_x = cell_size_x
-        self.__cell_size_y = cell_size_y
-        self.__win = win
-        self.__create_cells()
+        self._x1 = x1
+        self._y1 = y1
+        self._num_rows = num_rows
+        self._num_cols = num_cols
+        self._cell_size_x = cell_size_x
+        self._cell_size_y = cell_size_y
+        self._win = win
+        self._create_cells()
+        self._break_entrance_and_exit()
 
 
-    def __create_cells(self):
-        self.__cells = []
-        for i in range(0, self.__num_cols):
+    def _create_cells(self):
+        self._cells = []
+        for i in range(0, self._num_cols):
             col_list = []
-            for j in range(0, self.__num_rows):
-                col_list.append(Cell(self.__win))
-            self.__cells.append(col_list)
-        for i in range(0, self.__num_cols):
-            for j in range(0, self.__num_rows):
-                self.__draw_cell(i, j)
+            for j in range(0, self._num_rows):
+                col_list.append(Cell(self._win))
+            self._cells.append(col_list)
+        for i in range(0, self._num_cols):
+            for j in range(0, self._num_rows):
+                self._draw_cell(i, j)
 
 
-    def __draw_cell(self, i, j):
-        cell = self.__cells[i][j]
-        p1 = Point(self.__x1 + (self.__cell_size_x*i), self.__y1 + (self.__cell_size_y*j))
-        p2 = Point(self.__x1 + (self.__cell_size_x*(i+1)), self.__y1 + (self.__cell_size_y*(j+1)))
+    def _draw_cell(self, i, j):
+        cell = self._cells[i][j]
+        p1 = Point(self._x1 + (self._cell_size_x*i), self._y1 + (self._cell_size_y*j))
+        p2 = Point(self._x1 + (self._cell_size_x*(i+1)), self._y1 + (self._cell_size_y*(j+1)))
         cell.draw(p1, p2)
-        self.__animate()
+        self._animate()
 
 
-    def __animate(self):
-        self.__win.redraw()
+    def _animate(self):
+        if self._win:
+            self._win.redraw()
         time.sleep(0.05)
+
+    def _break_entrance_and_exit(self):
+        self._cells[0][0].has_top_wall = False
+        self._draw_cell(0, 0)
+        self._cells[self._num_cols-1][self._num_rows-1].has_bottom_wall = False
+        self._draw_cell(self._num_cols-1, self._num_rows-1)

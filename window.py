@@ -4,18 +4,18 @@ from shapes import Line
 
 class Window():
     def __init__(self, w: int, h: int):
-        self.__root = Tk()
-        self.__root.config(width=w, height=h)
-        self.__root.title("MazeSolver")
-        self.__root.protocol("WM_DELETE_WINDOW", self.close)
-        self.canvas = Canvas(master=self.__root, background="blue", width=w, height=h)
+        self._root = Tk()
+        self._root.config(width=w, height=h)
+        self._root.title("MazeSolver")
+        self._root.protocol("WM_DELETE_WINDOW", self.close)
+        self.canvas = Canvas(master=self._root, background="blue", width=w, height=h)
         self.canvas.pack()
         self.running = False
 
 
     def redraw(self):
-        self.__root.update_idletasks()
-        self.__root.update()
+        self._root.update_idletasks()
+        self._root.update()
 
 
     def wait_for_close(self):
