@@ -23,6 +23,7 @@ class Cell():
         self.has_top_wall = True
         self.has_bottom_wall = True
         self._win = win
+        self.visited = False
 
     def draw(self, point_1: Point, point_2: Point):
         self._x1 = point_1.x
@@ -33,10 +34,18 @@ class Cell():
             l_line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
             if self._win:
                 l_line.draw(self._win.canvas, "black")
+        else:
+            l_line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
+            if self._win:
+                l_line.draw(self._win.canvas, "white")
         if self.has_right_wall:
             l_line = Line(Point(self._x2, self._y1), Point(self._x2, self._y2))
             if self._win:
                 l_line.draw(self._win.canvas, "black")
+        else:
+            l_line = Line(Point(self._x2, self._y1), Point(self._x2, self._y2))
+            if self._win:
+                l_line.draw(self._win.canvas, "white")
         if self.has_top_wall:
             l_line = Line(Point(self._x1, self._y1), Point(self._x2, self._y1))
             if self._win:
